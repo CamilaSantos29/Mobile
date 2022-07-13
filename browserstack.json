@@ -1,0 +1,48 @@
+{
+    "auth": {
+        "username": "camilasantos_yE3tiJ",
+        "access_key": "dsPND8tNRQsWm2Sz55Zj"
+    },
+    "browsers": [
+        {
+            "browser": "chrome",
+            "os": "Windows 10",
+            "versions": [
+                "latest"
+                
+            ]
+        },
+        {
+            "browser": "firefox",
+            "os": "OS X Mojave",
+            "versions": ["latest", "latest - 1"]
+          },
+          {
+            "browser": "edge",
+            "os": "OS X Catalina",
+            "versions": ["latest"]
+          }
+        ],   
+        
+    
+    "run_settings": {
+        "cypress_config_file": "cypress.json",
+        "project_name": "Cypress CI - BrowserStack",
+        "build_name": "Build 1",
+        "parallels": "1",
+        "npm_dependencies": {
+            "faker": "^5.5.3",
+            "browserstack-cypress-cli": "^1.16.0",
+            "junit-report-merger": "^3.0.5"
+        },
+        
+        "headless": true
+    },
+    "connection_settings": {
+        "local": false,
+        "local_identifier": null,
+        "local_mode": null,
+        "local_config_file": null
+    },
+    "disable_usage_reporting": false
+}
