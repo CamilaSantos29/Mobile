@@ -29,7 +29,7 @@ steps:
   inputs:
     testResultsFormat: 'JUnit'
     testResultsFiles: '*.xml'
-    searchFolder: '$(System.DefaultWorkingDirectory)/cypress/reports/junit/'
+    searchFolder: '$(System.DefaultWorkingDirectory)/cypress/results/'
     mergeTestResults: true
   condition: succeededOrFailed()
   continueOnError: true
