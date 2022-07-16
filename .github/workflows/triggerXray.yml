@@ -1,0 +1,39 @@
+name: Trigger Github Actions workflow from a Xray Test Plan 
+on:
+  workflow_dispatch:
+    inputs:
+      test_plan_key:
+        description: 'Test Plan issue key'
+        required: false
+        default: ''
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+                 
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:     
+          command: npm run test
+      
+      - name: Cypress merge files
+        uses: cypress-io/github-action@v2
+        with:     
+          command: npm run merge-reports
+
+      - name: Get Xray Cloud API token
+        env:
+         CLIENT_ID: ${{ secrets.client_id }}  
+         CLIENT_SECRET: ${{ secrets.client_secret }}
+        id: xray-token
+        run: |
+          echo ::set-output name=XRAY_TOKEN::$(curl -H "Content-Type: application/json" -X POST --data "{ \"client_id\": \"$CLIENT_ID\",\"client_secret\": \"$CLIENT_SECRET\" }" https://xray.cloud.getxray.app/api/v2/authenticate| tr -d '"')
+      - name: Submit results to Xray
+        run: 'curl -H "Content-Type: text/xml" -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" --data @combined.xml  "https://xray.cloud.getxray.app/api/v2/import/execution/junit?projectKey=VCQ&testPlanKey=${{ github.event.inputs.test_plan_key }}"'
