@@ -59,8 +59,7 @@ pipeline {
 
     post {
         always {
-             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'cypress/results', reportFiles: 'combined.xml', reportName: 'HTML Report', reportTitles: ''])
-             deleteDir()
+             junit healthScaleFactor: 10.0, testResults: 'combined.xml'
             }
                       
         }
