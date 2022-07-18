@@ -46,6 +46,7 @@ pipeline {
             steps {
                 bat "npm i"
                 bat "npx cypress run --browser ${BROWSER} --spec ${SPEC}"
+                bat "npm run merge-reports"
             }
         }
         
@@ -58,7 +59,7 @@ pipeline {
 
     post {
         always {
-             junit 'cypress/results/test-results-[hash].xml'
+             junit 'combined.xml'
             }
                       
         }
