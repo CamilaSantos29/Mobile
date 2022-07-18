@@ -29,7 +29,7 @@ pipeline {
         choice(name: 'BROWSER', choices: ['chrome', 'edge', 'firefox'], description: 'Pick the web browser you want to use to run your scripts')
     }
     
-    
+   
     //The stage directive goes in the stages section and should contain a steps section, an optional agent section, 
     //or other stage-specific directives. Practically speaking, all of the real work done by a Pipeline will be wrapped
     //in one or more stage directives.
@@ -54,12 +54,12 @@ pipeline {
                 echo "Deploying"
             }
         }
+    }
+
     post {
         always {
-            junit 'cypress/results/test-results-[hash].xml'
+             junit 'cypress/results/test-results-[hash].xml'
+            }
+                      
+        }
     }
- }
-}
-    
-}
-   
