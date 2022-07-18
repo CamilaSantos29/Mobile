@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 const faker = require('faker')
-const data = require("../fixtures/mobiledevices.json") //Invokes mobile devices
+
 
 describe("Access Valtech's page", () => {
     beforeEach(() => {   
