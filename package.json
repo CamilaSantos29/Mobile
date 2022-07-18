@@ -8,6 +8,7 @@
     "cypress:browserstack": "browserstack-cypress run --sync",
     "cy:open:mobile": "cypress open --config viewportWidth=410 viewportHeigh=860",
     "test:mobile": "cypress run --config viewportWidth=410 viewportHeigh=860",
+    "cypress:ci": "concurrently \"cypress run\" --kill-others \"ng serve\" --success first",
     "cypress:verify": "cypress verify",
     "cypress:run": "cypress run",
     "test": "cypress run||true",
@@ -23,6 +24,7 @@
     "faker": "^5.5.3"
   },
   "devDependencies": {
+    "concurrently": "^7.2.2",
     "junit-report-merger": "^3.0.5"
   }
 }
