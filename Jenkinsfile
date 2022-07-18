@@ -59,7 +59,7 @@ pipeline {
 
     post {
         always {
-             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'combined.xml', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'cypress/results', reportFiles: 'combined.xml', reportName: 'HTML Report', reportTitles: ''])
              deleteDir()
             }
                       
