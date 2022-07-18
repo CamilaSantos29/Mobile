@@ -54,6 +54,12 @@ pipeline {
                 echo "Deploying"
             }
         }
+        post {
+           always {
+              junit 'cypress/results/test-results-[hash].xml'
     }
+ }
+}
+    
 }
    
