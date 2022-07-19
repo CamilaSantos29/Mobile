@@ -37,9 +37,9 @@ pipeline {
         }
     }
 
-    post {
+      post {
         always {
-             junit healthScaleFactor: 10.0, testResults: 'combined.xml'
+             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'cypress/results', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
             }
                       
         }
