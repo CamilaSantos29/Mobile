@@ -20,19 +20,39 @@ pipeline {
             steps {
                 echo "Building the application"
             }
-        }
-        
-        stage('Testing') {
+        }pipeline {
+    agent any
+
+    tools {nodejs "node"}
+
+    environment {
+        CHROME_BIN = '/bin/google-chrome'
+    }
+
+    stages {
+        stage('Dependencies') {
             steps {
-                bat "npm i"
-                bat "npx cypress run --browser ${BROWSER} --spec ${SPEC}"
-                bat "npm run merge-reports"
+                sh 'npm i'
             }
         }
-        
-        stage('Deploy'){
+        stage('Build') {
             steps {
-                echo "Deploying"
+                sh 'npm run build'
+            }
+        }
+        stage('e2e Tests') {
+            steps {
+                sh 'npm run cypress:run'
+            }
+        }
+        stage('merge files') {
+            steps {
+                sh 'npm run merge-reports'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
             }
         }
     }
