@@ -11,22 +11,22 @@ pipeline {
     stages {
         stage('Dependencies') {
             steps {
-                sh 'npm install'
+                bat 'npm install'
             }
         }
         stage('Build') {
             steps {
-                sh 'npm run build'
+                bat 'npm run build'
             }
         }
         stage('e2e Tests') {
             steps {
-                sh 'npm run cypress:run'
+                bat 'npm run cypress:run'
             }
         }
         stage('merge files') {
             steps {
-                sh 'npm run merge-reports'
+                bat 'npm run merge-reports'
             }
         }
         stage('Deploy') {
