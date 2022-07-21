@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat 'npm run build'
+                echo "Building the application"
             }
         }
         stage('e2e Tests') {
