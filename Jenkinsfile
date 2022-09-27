@@ -41,7 +41,8 @@ pipeline {
             junit 'combined.xml'
             }                      
         }
-        stage('SonarQube analysis') { 
+     stages {  
+       stage('SonarQube analysis') { 
           //def scannerHome = tool 'SonarScanner 4.0';
           steps{
           withSonarQubeEnv('sonarqube-9.6.1') { 
@@ -51,6 +52,7 @@ pipeline {
     }
   }
 } 
+ }
  }
 
  
