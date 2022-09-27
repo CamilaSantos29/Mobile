@@ -34,25 +34,18 @@ pipeline {
                 echo 'Deploying....'
             }
         }
-    }
-
-    post {
-        always {
-            junit 'combined.xml'
-            }                      
-        }
-     stages {  
-       stage('SonarQube analysis') { 
+        
+        stage('SonarQube analysis') { 
           //def scannerHome = tool 'SonarScanner 4.0';
-          steps{
-          withSonarQubeEnv('sonarqube-9.6.1') { 
+        steps{
+        withSonarQubeEnv('sonarqube-9.6.1') { 
           // If you have configured more than one global server connection, you can specify its name
           //sh "${scannerHome}/bin/sonar-scanner"
-          sh "mvn sonar:sonar"
+        sh "mvn sonar:sonar"
     }
   }
 } 
  }
- }
+  }
 
  
