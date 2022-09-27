@@ -14,7 +14,7 @@ jobs:
      # run: ' curl -s -u admin:carboidrato2911 https://sonarqube.com/api/sqp_fe878e7ec800b45961a01cb452423cd5200e15f8/search'
       
     - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@master
+      uses: sonarsource/sonarqube-scan-action@master
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
