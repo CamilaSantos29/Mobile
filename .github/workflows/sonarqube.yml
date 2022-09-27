@@ -13,17 +13,14 @@ jobs:
     #- name: API
      # run: ' curl -s -u admin:carboidrato2911 https://sonarqube.com/api/sqp_fe878e7ec800b45961a01cb452423cd5200e15f8/search'
       
-    - name: Run sonarqube
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        LC_ALL: "ru_RU.UTF-8"
-      run: sonar-scanner -X
-       -Dsonar.projectKey=local
-       -Dsonar.host.url=${{ secrets.SONAR_URL }}
-       -Dsonar.sources=e2e/
-       -Dsonar.login=sqp_fe878e7ec800b45961a01cb452423cd5200e15f8
-    services:
-      sonarqube:
-        image: sonarqube:9.6-community
-        ports:
-          - 9000:9000   
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+          args: >
+            -Dsonar.host.url=https://172.17.0.2:9000
+            -Dsonar.projectKey=local
+            -Dsonar.sources=.
+           
