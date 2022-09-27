@@ -20,7 +20,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       with:
-          args: >
+          args: -X
             -Dsonar.host.url=https://172.17.0.2:9000
             -Dsonar.projectKey=local
             -Dsonar.sources=.
