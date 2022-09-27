@@ -24,11 +24,7 @@ pipeline {
                 bat 'npm run cypress:run'
             }
         }
-        stage('merge files') {
-            steps {
-                bat 'npm run merge-reports'
-            }
-        }
+      
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
